@@ -56,6 +56,12 @@ close:
 # PROJECT RULES                                                                 #
 #################################################################################
 
+## elimina el entorno virtual y los archivos creados
+.PHONY: ingesta
+ingesta:
+	$(VENV_ACTIVATE); \
+	$(PYTHON_INTERPRETER) -m enhigh_eda/ingesta/carga_enhigh --año 2024
+
 
 
 #################################################################################
