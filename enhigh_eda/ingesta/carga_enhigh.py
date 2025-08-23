@@ -1,10 +1,7 @@
 import logging
 import requests
 import argparse
-import datetime
-
 from pathlib import Path
-import yaml
 import subprocess
 
 ## LOGGER
@@ -40,6 +37,19 @@ def descargar_datos(año=2024):
         for chunk in response.iter_content(chunk_size=8192):
             f.write(chunk)
     logger.info(f"Descarga completa: {zip_path}")
+    
+    # Commit en dvc a los datos agregados
+    try:
+        subprocess.run(
+            ["dvc", "add", str(zip_path.relative_to(base_data_dir))], 
+            cwd=base_data_dir, 
+            capture_output=True, 
+            text=True, 
+            check=True
+        )
+        logger.info("Datos agregados en DVC")
+    except subprocess.CalledProcessError as e:
+        logger.error(f"Error ejecutando DVC, mucho cuidado: {e}")
     return zip_path
 
 
@@ -66,38 +76,4 @@ if __name__ == "__main__":
     # Descargar datos
     zip_path = descargar_datos(año=args.año)
     
-    # Commit en dvc a los datos agregados
-    try:
-        resultado = subprocess.run(
-            ["dvc", "add", str(zip_path.relative_to(base_data_dir))], 
-            cwd=base_data_dir, 
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        subprocess.run(
-            ["git", "add", 
-             f"{zip_path.relative_to(base_data_dir)}.dvc", 
-             ".gitignore"], 
-            cwd=base_data_dir, 
-            check=True
-        )
-        commit_msg = f"Actualización datos ENHIGH - {datetime.now().strftime('%Y-%m-%d %H:%M')}"
-        subprocess.run(
-            ["git", "commit", "-m", commit_msg], 
-            cwd=base_data_dir, 
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        subprocess.run(
-            ["git", "push", "-u", 'origin', 'main'], 
-            cwd=base_data_dir, 
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        logger.info("Commit en DVC y en GIT realizado")
-    except subprocess.CalledProcessError as e:
-        logger.error(f"Error ejecutando DVC o GIT: {e}")
         

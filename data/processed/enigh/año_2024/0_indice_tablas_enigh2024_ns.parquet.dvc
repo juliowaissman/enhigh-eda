@@ -1,0 +1,5 @@
+outs:
+- md5: 13efb50f9083fc524dc54c073e2da2bb
+  size: 5158
+  hash: md5
+  path: 0_indice_tablas_enigh2024_ns.parquet

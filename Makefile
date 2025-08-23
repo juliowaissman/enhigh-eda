@@ -60,9 +60,20 @@ close:
 .PHONY: ingesta
 ingesta:
 	$(VENV_ACTIVATE); \
-	$(PYTHON_INTERPRETER) -m enhigh_eda/ingesta/carga_enhigh --año 2024
+	$(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2024 # && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2022 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2020 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2018 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2016
 
-
+## Extrae los datos en un repositorio intermedio y los da de alta en DVC
+.PHONY: extraer
+extraer:
+	$(VENV_ACTIVATE); \
+	$(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2024 # && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2022 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2020 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2018 && \
 
 #################################################################################
 # Self Documenting Commands                                                     #

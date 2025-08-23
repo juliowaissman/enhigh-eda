@@ -1,0 +1,6 @@
+outs:
+- md5: a5322facc88d99f298b4313e5639a14e.dir
+  size: 881864212
+  nfiles: 241
+  hash: md5
+  path: extracted
