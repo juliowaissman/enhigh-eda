@@ -3,8 +3,10 @@
 #################################################################################
 
 PROJECT_NAME = enhigh-eda
-PYTHON_VERSION = 3.10
-PYTHON_INTERPRETER = python
+PYTHON_VERSION = 3.13
+PYTHON_INTERPRETER = python3.13
+VENV_ACTIVATE = source .venv/bin/activate
+VENV_DEACTIVATE = deactivate
 
 #################################################################################
 # COMMANDS                                                                      #
@@ -14,10 +16,8 @@ PYTHON_INTERPRETER = python
 ## Install Python Dependencies
 .PHONY: requirements
 requirements:
-	$(PYTHON_INTERPRETER) -m pip install -U pip
+	$(VENV_ACTIVATE); $(PYTHON_INTERPRETER) -m pip install -U pip && \
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
-	
-
 
 
 ## Delete all compiled Python files
@@ -39,16 +39,18 @@ format:
 	black --config pyproject.toml enhigh_eda
 
 
+## Inicializa el entrono e instala las librerías
+.PHONY: init
+init:
+	$(PYTHON_INTERPRETER) -m venv .venv
+	make requirements
+	@echo "To activate the virtual environment, run: \nsource .venv/bin/activate"
 
-
-## Set up python interpreter environment
-.PHONY: create_environment
-create_environment:
-	@bash -c "if [ ! -z `which virtualenvwrapper.sh` ]; then source `which virtualenvwrapper.sh`; mkvirtualenv $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER); else mkvirtualenv.bat $(PROJECT_NAME) --python=$(PYTHON_INTERPRETER); fi"
-	@echo ">>> New virtualenv created. Activate with:\nworkon $(PROJECT_NAME)"
-	
-
-
+## elimina el entorno virtual y los archivos creados
+.PHONY: close
+close:
+	rm -rf .venv
+	make clean
 
 #################################################################################
 # PROJECT RULES                                                                 #
