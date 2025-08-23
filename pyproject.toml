@@ -1,0 +1,32 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "enhigh_eda"
+version = "0.0.1"
+description = "Ejemplo de descarga y an\u00e1lisis exploratorio de datos de la informaci\u00f3n de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENHIGH) del INEGI de M\u00e9xico, como un ejemplo de como descargar datos, manejar versiones y utilizar el `cookiecutter datascience`"
+authors = [
+  { name = "juliowaissman" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+requires-python = "~=3.10"
+
+[tool.black]
+line-length = 99
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+)/
+'''
+
+[tool.ruff.lint.isort]
+known_first_party = ["enhigh_eda"]
+force_sort_within_sections = true
