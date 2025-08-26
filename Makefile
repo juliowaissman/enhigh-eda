@@ -25,7 +25,7 @@ requirements:
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
-	rm -rf data/interim/
+	rm -rf data/interm/
 	$(VENV_ACTIVATE); dvc add data/interim/
 	git add -A
 	git commit -m "Limpiando archivos precompilados y dator intermedios"
@@ -87,7 +87,7 @@ extraer:
 	$(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2022 # && \
 	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2020 && \
 	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2018 
-	$(VENV_ACTIVATE); dvc add data/interim/
+	$(VENV_ACTIVATE); dvc add data/interm/
 	git add -A
 	git commit -m "Agrega datos descomprimidos (intermedios) a DVC"
 	git push

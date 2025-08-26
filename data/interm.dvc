@@ -1,0 +1,6 @@
+outs:
+- md5: 8c74483a072d264b7dce114b2d380847.dir
+  size: 1779463423
+  nfiles: 458
+  hash: md5
+  path: interm
