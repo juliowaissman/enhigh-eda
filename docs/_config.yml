@@ -2,9 +2,8 @@ theme: minima
 title: Ingesta y análisis de datos de la ENIGH
 description: >
   Análisis exploratorio de datos de la Encuesta Nacional de Hogares y Gasto.
-author:
-  name: Julio Waissman Vilanova
-  email: "julio.waissman@unison.mx"
+author: Julio Waissman Vilanova
+email: "julio.waissman@unison.mx"
 url: "https://juliowaissman/enhigh-eda"
 baseurl: "/" 
 
