@@ -1,4 +1,13 @@
 
+def procesa_datos_vivienda(año):
+    """Procesa los datos de vivienda para un año específico"""
+    raw_vivienda_dir = base_data_dir / f"interm/enigh/año_{año}/extracted"
+    extract_dir = base_data_dir / f"plata/vivienda/año_{año}"
+    
+    archivos = list(extract_dir.glob("*.csv"))
+    datos = procesar_datos(extract_dir, archivos, año)
+    return datos
+
 
 def guardar_parquet(datos, año):
     """Guarda los datos en formato Parquet"""

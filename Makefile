@@ -2,7 +2,7 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_NAME = enhigh-eda
+PROJECT_NAME = enigh-eda
 PYTHON_VERSION = 3.13
 PYTHON_INTERPRETER = python3.13
 VENV_ACTIVATE = source .venv/bin/activate

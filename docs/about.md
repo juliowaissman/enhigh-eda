@@ -7,7 +7,7 @@ title: Acerca de...
 
 # Acerca de...
 
-Este proyecto tiene como objetivo practicar conla extracción y análisis de datos de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH) en México. A través de este análisis, buscamos entender mejor las condiciones socioeconómicas de los hogares en el país.
+Este proyecto tiene como objetivo practicar con la extracción y análisis de datos de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH) en México. A través de este análisis, buscamos entender mejor las condiciones socioeconómicas de los hogares en el país.
 
 Este proyecto es parte del curso [*Ingeniería de Características*](https://mcd-unison.github.io/ing-caract/) de la [*Maestría en Ciencia de Datos*](mcd.unison.mx) de la **Universidad de Sonora**
 

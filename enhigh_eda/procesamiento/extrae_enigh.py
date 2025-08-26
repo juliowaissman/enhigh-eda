@@ -16,7 +16,7 @@ def extraer_datos(año):
     """Extrae los datos del archivo zip"""
     raw_dir = base_data_dir / "raw" / "enigh" / f"año_{año}"
     zip_path = raw_dir / f"enigh_{año}_raw.zip"
-    extract_dir = interm_dir / f"año_{año}" / "extracted"
+    extract_dir = interm_dir / f"año_{año}"
     extract_dir.mkdir(parents=True, exist_ok=True)
 
     logger.info(f"Extrayendo datos a: {extract_dir}...")
@@ -32,7 +32,7 @@ def extraer_datos(año):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Procesar datos ENHIGH')
+    parser = argparse.ArgumentParser(description='Procesar datos ENIGH')
     parser.add_argument('--año', type=int, required=True, help='Año de la encuesta')
     args = parser.parse_args()
     

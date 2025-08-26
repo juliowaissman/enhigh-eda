@@ -1,3 +1,7 @@
+---
+layout: page
+title: Referencias
+---
 
 # Información sobre la ENIGH por año
 

@@ -1,10 +1,10 @@
-# enhigh-eda
+# enigh-eda
 
 <a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
     <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
 </a>
 
-Ejemplo de descarga y análisis exploratorio de datos de la información de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENHIGH) del INEGI de México, como un ejemplo de como descargar datos, manejar versiones y utilizar el `cookiecutter datascience`
+Ejemplo de descarga y análisis exploratorio de datos de la información de la Encuesta Nacional de Ingresos y Gastos de los Hogares (ENIGH) del INEGI de México, como un ejemplo de como descargar datos, manejar versiones y utilizar el `cookiecutter datascience`
 
 ## Project Organization
 
@@ -13,8 +13,7 @@ Ejemplo de descarga y análisis exploratorio de datos de la información de la E
 ├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
 ├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
+│   ├── interm         <- Intermediate data that has been transformed.
 │   ├── processed      <- The final, canonical data sets for modeling.
 │   └── raw            <- The original, immutable data dump.
 │
