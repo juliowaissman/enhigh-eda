@@ -2,7 +2,6 @@ import logging
 import argparse
 from pathlib import Path
 import zipfile
-import subprocess
 
 
 ## LOGGER
@@ -26,21 +25,9 @@ def extraer_datos(año):
             archivos = zip_ref.namelist()
             zip_ref.extractall(extract_dir)
     except Exception as e:
-        raise ValueError(f"Error extrayendo datos: {e}")
+        logger.error(f"Error extrayendo datos: {e}")
     logger.info(f"Extracción completa: {extract_dir}")
     
-    try:
-        subprocess.run(
-            ["dvc", "add", str(extract_dir.relative_to(base_data_dir))], 
-            cwd=base_data_dir, 
-            capture_output=True, 
-            text=True, 
-            check=True
-        )
-        logger.info("Datos agregados en DVC")
-    except subprocess.CalledProcessError as e:
-        logger.error(f"Error ejecutando DVC, mucho cuidado: {e}")
-
     return extract_dir, archivos
 
 

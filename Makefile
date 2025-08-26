@@ -25,6 +25,11 @@ requirements:
 clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+	rm -rf data/interim/
+	$(VENV_ACTIVATE); dvc add data/interim/
+	git add -A
+	git commit -m "Limpiando archivos precompilados y dator intermedios"
+	git push
 
 ## Lint using flake8 and black (use `make format` to do formatting)
 .PHONY: lint
@@ -44,13 +49,17 @@ format:
 init:
 	$(PYTHON_INTERPRETER) -m venv .venv
 	make requirements
-	@echo "To activate the virtual environment, run: \nsource .venv/bin/activate"
-
+	$(VENV_ACTIVATE); dvc init --subdir
+	@echo "Para activar el entorno virtual, ejecuta: \nsource .venv/bin/activate"
+	
 ## elimina el entorno virtual y los archivos creados
 .PHONY: close
 close:
-	rm -rf .venv
 	make clean
+	$(VENV_DEACTIVATE)
+	rm -rf .venv
+	rm -rf data
+	rm -rf .dvc
 
 #################################################################################
 # PROJECT RULES                                                                 #
@@ -59,21 +68,29 @@ close:
 ## elimina el entorno virtual y los archivos creados
 .PHONY: ingesta
 ingesta:
-	$(VENV_ACTIVATE); \
-	$(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2024 # && \
-	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2022 && \
+	#$(VENV_ACTIVATE); \
+	#$(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2024 && \
+	#$(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2022 #&& \
 	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2020 && \
 	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2018 && \
-	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2016
+	# $(PYTHON_INTERPRETER) enhigh_eda/ingesta/carga_enhigh.py --año 2016 
+	$(VENV_ACTIVATE); dvc add data/raw/
+	git add -A
+	git commit -m "Agrega raw data a DVC"
+	git push
 
 ## Extrae los datos en un repositorio intermedio y los da de alta en DVC
 .PHONY: extraer
 extraer:
 	$(VENV_ACTIVATE); \
-	$(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2024 # && \
-	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2022 && \
+	$(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2024 && \
+	$(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2022 # && \
 	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2020 && \
-	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2018 && \
+	# $(PYTHON_INTERPRETER) enhigh_eda/procesamiento/extrae_enhigh.py --año 2018 
+	$(VENV_ACTIVATE); dvc add data/interim/
+	git add -A
+	git commit -m "Agrega datos descomprimidos (intermedios) a DVC"
+	git push
 
 #################################################################################
 # Self Documenting Commands                                                     #

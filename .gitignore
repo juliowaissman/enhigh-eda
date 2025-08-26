@@ -1,9 +1,7 @@
 # Data
+# Vamos a usar DVC para el versionado de datos
+# /data
 
-#/data/raw/
-#/data/processed/
-#/data/raw/!.dvc
-#/data/processed/!.dvc
 
 # Mac OS-specific storage files
 .DS_Store
