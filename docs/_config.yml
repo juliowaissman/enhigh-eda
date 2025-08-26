@@ -1,4 +1,6 @@
+theme: minima
 title: Documentación de Análisis ENIGH
 description: "Análisis exploratorio de datos de la Encuesta Nacional de Hogares y Gasto."
-baseurl: "https://github.com/juliowaissman/enhigh-eda" 
-theme: minima
+baseurl: "/"
+url: "https://juliowaissman/enhigh-eda"
+baseurl: "/" 
